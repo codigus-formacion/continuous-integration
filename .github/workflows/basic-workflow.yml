@@ -1,10 +1,17 @@
 name: Continuous integration example
 
 on: 
-  pull_request:
+  workflow_dispatch:
 
 jobs:
-
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+        fail-fast: false
+        matrix:
+           os: [ macos-latest, windows-latest, ubuntu-latest ]
+           java: [ '11', '17', '21']
+    name: Java ${{ matrix.java }} sample
   test:
     runs-on: ubuntu-latest
     steps:
@@ -13,5 +20,5 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '21'
+          java-version: ${{ matrix.java }}
       - run: mvn test
