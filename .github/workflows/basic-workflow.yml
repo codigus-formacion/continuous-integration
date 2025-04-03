@@ -6,12 +6,12 @@ on:
 jobs:
 
   test:
-    runs-on: ${{matrix.os}}
     strategy:
       fail-fast: false
       matrix: 
         os: [macos-latest,windows-latest,ubuntu-latest]
         java: ['11','17','21']
+    runs-on: ${{matrix.os}}
     name: Java ${{matrix.java}} sample
     steps:
       - uses: actions/checkout@v4
