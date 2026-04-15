@@ -5,7 +5,7 @@
 
 	<groupId>es.codeurjc.test</groupId>
 	<artifactId>calculadora</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-</version>
 	<packaging>jar</packaging>
 
 	<properties>
@@ -47,6 +47,14 @@
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.5.2</version>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+
+				<configuration>
+					<mainClass>es.codeurjc.test.ejem.Calculadora</mainClass>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
