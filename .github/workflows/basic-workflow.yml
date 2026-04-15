@@ -1,11 +1,9 @@
 name: Continuous integration example
 
-
 # ICÍAR
 on:
   pull_request:
     branches: [ main ]
-
 
 jobs:
 
