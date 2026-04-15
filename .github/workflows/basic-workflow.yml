@@ -16,10 +16,13 @@ jobs:
         java-version: '21'
         cache: 'maven' # Opcional: Acelera las builds futuras cacheando las dependencias
 
+    - name: Generate tag
+      run: echo "tag=$(mvn -q help:evaluate -Dexpression=project.version -DforceStdout)" > $GITHUB_OUTPUT
+      id: project
     - name: Generate Docker image
       # Si tu pom.xml está en una subcarpeta (ej. /backend), descomenta la siguiente línea:
       # working-directory: ./ruta-a-tu-carpeta
-      run: mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=${{ secrets.DOCKERHUB_USERNAME }}/posts:v1
+      run: mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=${{ secrets.DOCKERHUB_USERNAME }}/posts:${{steps.project.outputs.tag}}
       
     - name: Login to DockerHub
       run: docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" -p "${{ secrets.DOCKERHUB_TOKEN }}"
