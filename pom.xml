@@ -51,6 +51,10 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+
+				<configuration>
+					<mainClass>es.codeurjc.test.ejem.Calculadora</mainClass>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
