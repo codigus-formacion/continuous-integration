@@ -1,3 +1,8 @@
+name: Continuous Integration Ejercicio2
+
+on:
+  pull_request
+
 jobs:
   build:
     runs-on: ${{ matrix.os }}
@@ -14,3 +19,4 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: ${{ matrix.java }}
+      - run: mvn test
