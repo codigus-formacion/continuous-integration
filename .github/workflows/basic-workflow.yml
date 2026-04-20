@@ -1,12 +1,18 @@
 name: Continuous integration example
 
 on: 
-  push:
+  pull_request:
 
 jobs:
 
   test:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+        java: ['11', '17', '21']
+    name: Java ${{matrix.java}} sample
     steps:
       - uses: actions/checkout@v6
       - name: Set up JDK 21
